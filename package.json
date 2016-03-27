@@ -1,0 +1,39 @@
+{
+  "name": "mam-integration",
+  "version": "0.1.0",
+  "description": "",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "author": "Alexandros Katopodis",
+  "license": "ISC",
+  "devDependencies": {
+    "a": "^1.0.2",
+    "babel-core": "^6.6.4",
+    "babel-eslint": "^6.0.0-beta.5",
+    "babel-plugin-transform-async-to-generator": "^6.5.0",
+    "babel-preset-es2015-node4": "^2.0.3",
+    "del": "^2.2.0",
+    "eslint": "~2.2.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-rename": "^1.2.2",
+    "jasmine": "^2.4.1",
+    "lolex": "^1.4.0",
+    "mock-fs": "^3.7.0",
+    "mockery": "^1.4.1",
+    "run-sequence": "^1.1.5",
+    "streamqueue": "^1.1.1"
+  },
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "later": "^1.2.0",
+    "mz": "^2.3.1",
+    "ramda": "^0.19.1",
+    "request-promise": "^2.0.1"
+  },
+  "engine": "node >= 0.4.1",
+  "private": true
+}
