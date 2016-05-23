@@ -6,23 +6,29 @@ import mockFs from 'mock-fs';
 import a from 'a';
 // using require to mock log
 a.expectRequire('./log').return(require('./mam-log.mock'));
-const credentials = require('../src/mam/credentials').default;
+const configuration = require('../src/mam/configuration').default;
 
-describe('credentials', () => {
+describe('configuration', () => {
   describe('has an API that', () => {
-    it('should have a getCredentials function', () => {
-      expect(typeof credentials.getCredentials).toBe('function');
+    it('should have a getConfiguration function', () => {
+      expect(typeof configuration.getConfiguration).toBe('function');
     });
   });
 
-  describe('has a getCredentials function that', () => {
-    let credentialsObj = undefined;
+  describe('has a getConfiguration function that', () => {
+    let configurationObj = undefined;
 
     beforeEach(() => {
-      credentialsObj = {
+      configurationObj = {
         FB_ACCESS_TOKEN: 'XXX',
         FB_USER_ID: 'XXX',
         MM_WEBHOOK_URL: 'XXX',
+        STRICT_SSL: true,
+        MM_ICON_URL: 'https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/png/1f32e.png',
+        MM_USERNAME: 'MamBot',
+        SCHEDULE: 'at 7:00 am except on Sat and Sun',
+        POLL_INTERVAL: '25m',
+        POLL_DURATION: '5h',
       };
     });
 
@@ -33,47 +39,47 @@ describe('credentials', () => {
       delete process.env.MAM_MM_WEBHOOK_URL;
     });
 
-    it('should load credentials from ${cwd}/credentials.json if no path is provided', (done) => {
+    it('should load configuration from ${cwd}/configuration.json if no path is provided', (done) => {
       mockFs({
-        [`${process.cwd()}/credentials.json`]: JSON.stringify(credentialsObj),
+        [`${process.cwd()}/configuration.json`]: JSON.stringify(configurationObj),
       });
 
-      credentials.getCredentials()
+      configuration.getConfiguration()
         .then((res) => {
-          expect(res).toEqual(credentialsObj);
+          expect(res).toEqual(configurationObj);
         })
         .then(done);
     });
 
-    it('should load credentials from path if it is provided', (done) => {
-      const path = '/path/credentials.json';
+    it('should load configuration from path if it is provided', (done) => {
+      const path = '/path/configuration.json';
 
       mockFs({
-        [path]: JSON.stringify(credentialsObj),
+        [path]: JSON.stringify(configurationObj),
       });
 
-      credentials.getCredentials(path)
+      configuration.getConfiguration(path)
         .then((res) => {
-          expect(res).toEqual(credentialsObj);
+          expect(res).toEqual(configurationObj);
         })
         .then(done);
     });
 
     it([
-      'should load credentials from ENV if no path is provided and',
-      'if no credentials.json is in ${CWD}',
+      'should load configuration from ENV if no path is provided and',
+      'if no configuration.json is in ${CWD}',
     ].join(' '), (done) => {
       mockFs({});
 
       process.env = R.merge(process.env, {
-        MAM_FB_ACCESS_TOKEN: credentialsObj.FB_ACCESS_TOKEN,
-        MAM_FB_USER_ID: credentialsObj.FB_USER_ID,
-        MAM_MM_WEBHOOK_URL: credentialsObj.MM_WEBHOOK_URL,
+        MAM_FB_ACCESS_TOKEN: configurationObj.FB_ACCESS_TOKEN,
+        MAM_FB_USER_ID: configurationObj.FB_USER_ID,
+        MAM_MM_WEBHOOK_URL: configurationObj.MM_WEBHOOK_URL,
       });
 
-      credentials.getCredentials()
+      configuration.getConfiguration()
         .then((res) => {
-          expect(res).toEqual(credentialsObj);
+          expect(res).toEqual(configurationObj);
         })
         .then(done);
     });

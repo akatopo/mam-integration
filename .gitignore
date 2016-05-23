@@ -2,4 +2,4 @@ lib
 node_modules
 *.sublime-workspace
 last-post.json
-credentials.json
+configuration.json
