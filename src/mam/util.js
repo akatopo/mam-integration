@@ -14,7 +14,7 @@ function parseToMillis(duration) {
   };
 
   if (!regex.test(duration)) {
-    return undefined;
+    return 0;
   }
 
   const res = regex.exec(duration);
