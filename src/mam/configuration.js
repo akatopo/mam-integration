@@ -10,7 +10,7 @@ const API = {
 
 const configurationDefaults = {
   STRICT_SSL: true,
-  MM_ICON_URL: 'https://cdnjs.cloudflare.com/ajax/libs/emojione/2.1.4/assets/png/1f32e.png',
+  MM_ICON_URL: 'https://raw.githubusercontent.com/Ranks/emojione/master/assets/png_512x512/1f32e.png',
   MM_USERNAME: 'MamBot',
   SCHEDULE: 'at 7:00 am except on Sat and Sun',
   POLL_INTERVAL: '25m',
