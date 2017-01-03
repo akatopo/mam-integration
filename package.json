@@ -22,7 +22,7 @@
     "gulp-rename": "^1.2.2",
     "jasmine": "^2.4.1",
     "lolex": "^1.4.0",
-    "mock-fs": "^3.7.0",
+    "mock-fs": "beta",
     "mockery": "^1.4.1",
     "run-sequence": "^1.1.5",
     "streamqueue": "^1.1.1"
