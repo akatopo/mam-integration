@@ -110,12 +110,12 @@ describe('mam', () => {
       const occurrences = later.schedule(schedule).next(10);
 
       expect(occurrences).toEqual(jasmine.any(Array));
-      occurrences.forEach((occurence) => {
+      occurrences.forEach((occurrence) => {
         // Sat(6), Sun(0)
-        expect(occurence.getDay() in { 6: false, 0: false }).toBe(false);
+        expect(occurrence.getDay() in { 6: false, 0: false }).toBe(false);
         // 7am (local time)
-        expect(occurence.getHours()).toBe(7);
-        expect(occurence.getMinutes()).toBe(0);
+        expect(occurrence.getHours()).toBe(7);
+        expect(occurrence.getMinutes()).toBe(0);
       });
     });
   });
